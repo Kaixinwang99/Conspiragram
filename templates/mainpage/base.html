@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+{% load mainpage_tags %}
+
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}" />
+
+        {% block resources %} {% endblock %}
+
+            <title>
+                ConspiraGram -
+                {% block title_block %}
+                {% endblock %}
+            </title>
+        </head>
+    
+    <body>
+        <div id="header">
+
+            <a href="{% url "mainpage" %}"><p id="conspiragram_title"> foodgram</p></a>
+            <a href="{% url "about" %}"><p id="about_us"> about us</p></a>
+
+        </div>
+        
+        <div class="bodyContainer">
+            {% block body_block %}
+            {% endblock %}
+        </div>
+        
+        <div>
+            <!-- we dont need a footer but it would be here -->
+        </div>
+    
+    </body>
+
+
+</html>

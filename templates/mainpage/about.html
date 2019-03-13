@@ -1,0 +1,55 @@
+{% extends 'mainpage/base.html' %}
+{% load staticfiles %}
+{% load mainpage_tags %}
+
+{% block resources %}
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock %}
+
+{% block title_block %}
+    About Us
+{% endblock %}
+
+{% block body_block %}
+    <p id="aboutUs">
+        WAD project: The idea was to create a web page similar in style to the very popular social
+        network; Instagram. The main feature of our platform was to create the content solely about conspiracies and give people the ability to explore conspiratorial pictures, and rate their veracity.
+        There are two main rating systems: TrueVsFalse, and exper verification. Anyone can say if they think the photo is true or false, but only expert users can give a seal of approval. Join us to uncover the truth! :)
+
+    </p>
+
+    <div id="authors">
+        <div id="hugo">
+
+            <img class="circular author" src="{% static 'images/hugo.jpg' %}" />
+
+            <p class="authorName">Hugo Fernández</p>
+        </div>
+
+        <div id="kaixin">
+
+            <img class="circular author" src="{% static 'images/kaixin.png' %}" />
+            <p class="authorName">Kaixin Wang</p>
+        </div>
+
+
+        <div id="miao">
+
+            <img class="circular author" src="{% static 'images/miao.png' %}" />
+            <p class="authorName">Miao Pang</p>
+        </div>
+
+        <div id="mark">
+
+            <img class="circular author" src="{% static 'images/mark.png' %}" />
+            <p class="authorName">Markus Zijlstra</p>
+        </div>
+
+    </div>
+
+
+{% endblock %}
+

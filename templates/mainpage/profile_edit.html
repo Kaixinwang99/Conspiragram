@@ -1,0 +1,57 @@
+{% extends 'mainpage/base.html' %}
+{% load staticfiles %}
+{% block resources %}
+
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" > </link>
+    <script src="{% static 'js/signup.js' %}"></script>
+
+{% endblock %}
+
+{% block title_block %}
+    Profile Edit
+{% endblock %}
+
+{% block body_block %}
+
+    <form id="profile_edit_form" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+            {% for field in form %}
+                {% if field.name == "avatar" %}
+
+                    <div id="pictureUpload" class="w3-modal">
+                        <div class="w3-modal-content w3-animate-top w3-card-4 addModal">
+                            <header class="w3-container">
+                            <span onclick="document.getElementById('pictureUpload').style.display='none'"
+                                class="w3-button w3-display-topright addClose">&times;</span>
+                            <p class="addImgText"> Add image</p>
+                            </header>
+
+                            {{ field }}<br><br><br><br><br>
+                        </div>
+                    </div>
+
+                    {% if user.avatar %}
+                        <div class="circular profilePic">
+                        <img onclick="document.getElementById('pictureUpload').style.display='block'"
+                             src={{ user.avatar.url }}></div>
+
+                    {% else %}
+                        <div class="circular profilePic">
+                        <img onclick="document.getElementById('pictureUpload').style.display='block'"
+                             src="{% static "images/default_avatar.jpg" %}"></div>
+
+                    {% endif %}
+
+                {% else %}
+                    <div class="editContainer">
+                        <p class="helpEdit"> {{ field.help_text }}</p>
+                        {{ field }}
+                    </div>
+                {% endif %}
+            {% endfor %}
+
+        <input type="submit" name="submit" class="submitEdit" value="Submit Changes" />
+    </form>
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends 'mainpage/base.html' %}
+{% load staticfiles %}
+{% block resources %}
+
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" > </link>
+<script src="{% static 'js/signup.js' %}"></script>
+
+{% endblock %}
+{% block title_block %}
+    Home
+{% endblock %}
+
+{% block body_block %}
+
+
+
+
+<div id="background">
+    <img src="{% static 'images/index_bg.jpg' %}"/>
+</div>
+
+
+    <div id="center_plate">
+        <div class="container_index">
+        <form id="login_form" method="post">
+            {% csrf_token %}
+                {% for field in login_form %}
+                <p class="form">
+            <p class="form_tag">{{ field.label_tag }}<br></p>
+                    {{ field }}
+                    {% for error in field.errors %}
+                        <p style="color: red">{{ error }}</p>
+                    {% endfor %}
+                </p>
+                {% endfor %}
+
+            <input type="submit" name="submit" class="submit" value="Login" />
+        </form>
+
+        <div class="horizontal_container">
+
+                <div id="line_left" class="line"> </div>
+
+                <h6>OR</h6>
+
+                <div id="line_right" class="line">  </div>
+
+        </div>
+
+        <button id ="sign" class="submit sign_up" > Sign Up! </button>
+
+        <!-- The Modal -->
+            <div id="signModal" class="modal_first">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                     <span class="close">&times;</span>
+
+                    <form id="sign_up_form" method="post">
+                                {% csrf_token %}
+                                    {% for field in sign_up_form %}
+                                    <p class="form indexSign">
+                                        {{ field.label_tag }}<br>
+                                        {{ field }}
+                                        {% if field.help_text %}
+
+                                        {% endif %}
+                                        {% for error in field.errors %}
+                                            <p style="color: red">{{ error }}</p>
+                                        {% endfor %}
+                                    </p>
+                                    {% endfor %}
+
+
+                        <p class="form indexSign"> <input type="submit" name="submit" class="submit" value="Sign Up" />
+                    </form>
+
+
+                </div>
+
+            </div>
+            </div>
+
+
+
+   </div>
+
+
+{% endblock %}

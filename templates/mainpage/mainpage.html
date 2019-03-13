@@ -1,0 +1,282 @@
+{% extends 'mainpage/base.html' %}
+{% load staticfiles %}
+{% load mainpage_tags %}
+{% block resources %}
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <script src="{% static 'js/post.js' %}"></script>
+    <script src="{% static 'js/limiter.js' %}"></script>
+    <script src="{% static 'js/ratings.js' %}"></script>
+    <script src="{% static 'js/stats.js' %}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+{% endblock %}
+
+{% block title_block %}
+    Mainpage
+{% endblock %}
+
+{% block body_block %}
+
+
+    <!-- MainPage -->
+    {% for pic in feed %}
+        <div class="post">
+            <a href="{% url "user_profile" pic.author.slug %}">
+            {% if pic.author.avatar %}
+            <div class="circular post_user_img">
+                <img  src={{ pic.author.avatar.url }}></div>
+            {% else %}
+             <div class="circular post_user_img">
+                <img  src="{% static "images/default_avatar.jpg" %}"></div>
+            {% endif %}
+
+            <p class="name">{{ pic.author }}</p></a>
+
+            {% get_date_posted pic as date %}
+            <p class="date">{{ date }}</p>
+
+
+            <!-- ################################################################################ -->
+            <!-- The Modal -->
+            {% get_position pic feed as index %}
+            <div id="big_post {{ index }}" class="modal_bg_post">
+
+                <!-- Modal content-->
+                <div class="modal_post modal_comments">
+                     <span class="close {{ index }}">&times;</span>
+
+                    <a href="{% url "user_profile" pic.author.slug %}">
+                        {% if pic.author.avatar %}
+                        <div class="circular inPostPPic" >
+                            <img  src={{ pic.author.avatar.url }}></div>
+                        {% else %}
+                         <div class="circular  inPostPPic" >
+                            <img  src="{% static "images/default_avatar.jpg" %}"></div>
+                        {% endif %}
+
+                        <p class="nameInPic">{{ pic.author }}</p></a>
+
+                        <p class="descriptionInPic">{{ pic.description }}</p>
+
+
+                    <!-- Comments section -->
+                    <div id="comments" class="{{ index }}">
+                    {% get_picture_comments pic as comments %}
+
+                    {% for comment in comments %}
+                        <div id="commentHolder">
+                            <p class="comment"> {{comment.author}}: {{comment.comment}} </p> <!--creates comment by author followed by actuall comment made -->
+                        </div>
+                    {% endfor %}
+
+                    </div>
+
+                    <form method="post" class="commentForm" data-index="{{ index }}">
+                        {% csrf_token %}
+                        {% for field in comment_form %}
+                            {% if field.name == "picture" %}
+                                <input id="id_picture" name="picture" value="{{ pic.slug }}" hidden/>
+                            {% else %}
+                                {{ field }}
+                            {% endif %}
+                        {% endfor %}
+                        <input type="submit" name="submit" class="submitComment" id="submitComment" value="Comment" />
+                    </form>
+
+
+                </div>
+
+
+                <div class="modal_post modal_pic">
+
+                        {% get_date_posted pic as date %}
+                        <p class="date modaldate">{{ date }}</p>
+                    <img class="modal_img" src={{ pic.picture.url }}>
+
+                    {% get_current_user_pic_ratings user pic as details %}
+
+                    <div class="ratings_container" id="user_health_rating {{ index }}"
+                         data-rating="{{ details.health }}">
+                        <h3>Health</h3>
+                        <span class="" data-type="health" data-value="1"
+                              data-picture="{{ pic.slug }}" data-index="{{ index }}"></span>
+                        <span class="" data-type="health" data-value="2"
+                              data-picture="{{ pic.slug }}" data-index="{{ index }}"></span>
+                        <span class="" data-type="health" data-value="3"
+                              data-picture="{{ pic.slug }}" data-index="{{ index }}"></span>
+                        <span class="" data-type="health" data-value="4"
+                              data-picture="{{ pic.slug }}" data-index="{{ index }}"></span>
+                        <span class="" data-type="health" data-value="5"
+                              data-picture="{{ pic.slug }}" data-index="{{ index }}"></span>
+
+                    </div>
+
+                    <div class="ratings_container" id="user_style_rating {{ index }}"
+                         data-rating="{{ details.style }}">
+                        <h3>Style</h3>
+                        <span class="" data-type="style" data-value="1"
+                              data-picture="{{ pic.slug }}" data-index="{{ index }}"></span>
+                        <span class="" data-type="style" data-value="2"
+                              data-picture="{{ pic.slug }}" data-index="{{ index }}"></span>
+                        <span class="" data-type="style" data-value="3"
+                              data-picture="{{ pic.slug }}" data-index="{{ index }}"></span>
+                        <span class="" data-type="style" data-value="4"
+                              data-picture="{{ pic.slug }}" data-index="{{ index }}"></span>
+                        <span class="" data-type="style" data-value="5"
+                              data-picture="{{ pic.slug }}" data-index="{{ index }}"></span>
+                    </div>
+
+                    <div class="ratings_container" id="user_cooking_rating {{ index }}"
+                        data-rating="{{ details.cooking }}">
+                        <h3>Cooking</h3>
+                        <span class="" data-type="cooking" data-value="1"
+                              data-picture="{{ pic.slug }}" data-index="{{ index }}"></span>
+                        <span class="" data-type="cooking" data-value="2"
+                              data-picture="{{ pic.slug }}" data-index="{{ index }}"></span>
+                        <span class="" data-type="cooking" data-value="3"
+                              data-picture="{{ pic.slug }}" data-index="{{ index }}"></span>
+                        <span class="" data-type="cooking" data-value="4"
+                              data-picture="{{ pic.slug }}" data-index="{{ index }}"></span>
+                        <span class="" data-type="cooking" data-value="5"
+                              data-picture="{{ pic.slug }}" data-index="{{ index }}"></span>
+                     </div>
+
+                    <script>GetUserRatings({{ index }});</script>
+
+                </div>
+
+
+            </div>
+
+        <!-- ################################################################################ -->
+
+            <div class="container_img">
+
+                <img class="post_img" src="{{ pic.picture.url }}" onclick="viewBigPost({{ index }})">
+                <div class="middle" onclick="viewBigPost({{ index }})">
+                    <div class="ratings">
+
+                        {% get_pic_ratings pic as details %}
+
+                        <div id="health_rating {{ index }}" data-rating="{{ details.health }}">
+                            <h2>Health</h2>
+                            <span class=""></span>
+                            <span class=""></span>
+                            <span class=""></span>
+                            <span class=""></span>
+                            <span class=""></span>
+                        </div>
+
+                        <div id="style_rating {{ index }}" data-rating="{{ details.style }}">
+                            <h2>Style</h2>
+                            <span class=""></span>
+                            <span class=""></span>
+                            <span class=""></span>
+                            <span class=""></span>
+                            <span class=""></span>
+                        </div>
+
+                        <div id="cooking_rating {{ index }}" data-rating="{{ details.cooking }}">
+                            <h2>Cooking</h2>
+                            <span class=""></span>
+                            <span class=""></span>
+                            <span class=""></span>
+                            <span class=""></span>
+                            <span class=""></span>
+                        </div>
+
+                        <script> GetRatings( {{ index }} );</script>
+                    </div>
+                </div>
+            </div>
+            <p class="description">{{ pic.description }}</p>
+
+
+
+
+
+        </div>
+    {% endfor %}
+
+    <div id="stats">
+
+
+        <!-- User Profile and statistics -->
+        <a href="{% url "profile_edit" %}">{% if user.avatar %}
+            <div class="circular">
+                <img  src={{ user.avatar.url }}> </div>
+        {% else %}
+            <div class="circular">
+                <img class="user_img" src="{% static "images/default_avatar.jpg" %}"> </div>
+        {% endif %}
+
+        {{ user.first_name }} {{ user.last_name }}</a>
+
+        <!-- Statistics -->
+        <h4>Statistics</h4>
+
+            {% get_user_stats user as stats %}
+            <div class="stats_container">
+                <h5>Health</h5>
+            <div class="stat">
+                 <div id="purple" data-stat="{{ stats.health }}"> {{ stats.health }}</div>
+
+            </div>
+            </div>
+
+            <div class="stats_container">
+                <h5>Style</h5>
+                    <div class="stat">
+                        <div id="red" data-stat="{{ stats.style }}"> {{ stats.style }}</div>
+                    </div>
+            </div>
+
+            <div class="stats_container">
+                <h5>Cooking</h5>
+                    <div class="stat">
+                        <div id="blue" data-stat="{{ stats.cooking }}"> {{ stats.cooking }}</div>
+                    </div>
+
+            </div>
+
+        <script>
+function myFunction() {
+    document.getElementById("purple").style.width = "100%";
+}
+</script>
+
+        <!-- Account options -->
+
+        <form id="sign_out_form" method="POST">
+            {% csrf_token %}
+            <input type="submit" name="submit" class="signout" value="Sign Out" />
+        </form>
+
+
+    </div>
+
+    <span onclick="document.getElementById('id01').style.display='block'" class="add_img"> +</span>
+
+    <div id="id01" class="w3-modal">
+        <div class="w3-modal-content w3-animate-top w3-card-4 addModal">
+            <header class="w3-container">
+            <span onclick="document.getElementById('id01').style.display='none'"
+                class="w3-button w3-display-topright addClose">&times;</span>
+            <p class="addImgText"> Add image</p>
+            </header>
+
+            <!-- Image upload -->
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ upload_form.as_p }}
+                <input type="submit" name="submit" class="submitEdit" value="Upload" />
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'js/rating_ajax.js' %}"></script>
+{% endblock %}

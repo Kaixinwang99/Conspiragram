@@ -1,0 +1,201 @@
+{% extends 'mainpage/base.html' %}
+{% load staticfiles %}
+{% load mainpage_tags %}
+{% block resources %}
+
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <script src="{% static 'js/post.js' %}"></script>
+    <script src="{% static 'js/ratings.js' %}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+{% endblock %}
+
+{% block title_block %}
+    {{ owner.first_name }} {{ owner.last_name }}
+{% endblock %}
+
+{% block body_block %}
+    <a href="{% url "user_profile" owner.slug %}">
+    {% if owner.avatar %}
+        <div class="profilePic circular">
+            <img  src={{ owner.avatar.url }}>
+        </div>
+
+    {% else %}
+        <div class="profilePic circular">
+            <img  src="{% static "images/default_avatar.jpg" %}">
+        </div>
+
+    {% endif %}
+    <p class="profileName">{{ owner.first_name }} {{ owner.last_name }}</p>
+    </a>
+
+
+    <div class="profileContainer">
+    {% get_user_uploads owner as pics %}
+
+    {% for pic in pics %}
+
+
+            <!-- ################################################################################ -->
+             <!-- The Modal -->
+            {% get_position pic pics as index %}
+            <div id="big_post {{ index }}" class="modal_bg_post">
+
+                <!-- Modal content-->
+                <div class="modal_post modal_comments">
+                     <span class="close {{ index }}">&times;</span>
+
+                    <a href="{% url "user_profile" pic.author.slug %}">
+                        {% if pic.author.avatar %}
+                        <div class="circular inPostPPic" >
+                            <img  src={{ pic.author.avatar.url }}></div>
+                        {% else %}
+                         <div class="circular inPostPPic" >
+                            <img  src="{% static "images/default_avatar.jpg" %}"></div>
+                        {% endif %}
+
+                        <p class="nameInPic">{{ pic.author }}</p></a>
+
+                        <p class="descriptionInPic">{{ pic.description }}</p>
+
+
+                    <!-- Comments section -->
+                    <div id="comments" class="{{ index }}">
+                    {% get_picture_comments pic as comments %}
+
+                    {% for comment in comments %}
+                        <div id="commentHolder">
+                            <p class="comment"> {{comment.author}}: {{ comment.comment }}</p>
+                        </div>
+                    {% endfor %}
+
+                    </div>
+
+                    <form method="post" class="commentForm" data-index="{{ index }}">
+                        {% csrf_token %}
+                        {% for field in comment_form %}
+                            {% if field.name == "picture" %}
+                                <input id="id_picture" name="picture" value="{{ pic.slug }}" hidden/>
+                            {% else %}
+                                {{ field }}
+                            {% endif %}
+                        {% endfor %}
+                        <input type="submit" name="submit" class="submitComment" id="submitComment" value="Comment" />
+                    </form>
+
+
+                </div>
+
+
+                <div class="modal_post modal_pic">
+
+                        {% get_date_posted pic as date %}
+                        <p class="date modaldate">{{ date }}</p>
+                    <img class="modal_img" src={{ pic.picture.url }}>
+
+                    {% get_current_user_pic_ratings user pic as details %}
+
+                    <div class="ratings_container" id="user_health_rating {{ index }}"
+                         data-rating="{{ details.health }}">
+                        <h3>Health</h3>
+                        <span class="" data-type="health" data-value="1"
+                              data-picture="{{ pic.slug }}" data-index="{{ index }}"></span>
+                        <span class="" data-type="health" data-value="2"
+                              data-picture="{{ pic.slug }}" data-index="{{ index }}"></span>
+                        <span class="" data-type="health" data-value="3"
+                              data-picture="{{ pic.slug }}" data-index="{{ index }}"></span>
+                        <span class="" data-type="health" data-value="4"
+                              data-picture="{{ pic.slug }}" data-index="{{ index }}"></span>
+                        <span class="" data-type="health" data-value="5"
+                              data-picture="{{ pic.slug }}" data-index="{{ index }}"></span>
+
+                    </div>
+
+                    <div class="ratings_container" id="user_style_rating {{ index }}"
+                         data-rating="{{ details.style }}">
+                        <h3>Style</h3>
+                        <span class="" data-type="style" data-value="1"
+                              data-picture="{{ pic.slug }}" data-index="{{ index }}"></span>
+                        <span class="" data-type="style" data-value="2"
+                              data-picture="{{ pic.slug }}" data-index="{{ index }}"></span>
+                        <span class="" data-type="style" data-value="3"
+                              data-picture="{{ pic.slug }}" data-index="{{ index }}"></span>
+                        <span class="" data-type="style" data-value="4"
+                              data-picture="{{ pic.slug }}" data-index="{{ index }}"></span>
+                        <span class="" data-type="style" data-value="5"
+                              data-picture="{{ pic.slug }}" data-index="{{ index }}"></span>
+                    </div>
+
+                    <div class="ratings_container" id="user_cooking_rating {{ index }}"
+                        data-rating="{{ details.cooking }}">
+                        <h3>Cooking</h3>
+                        <span class="" data-type="cooking" data-value="1"
+                              data-picture="{{ pic.slug }}" data-index="{{ index }}"></span>
+                        <span class="" data-type="cooking" data-value="2"
+                              data-picture="{{ pic.slug }}" data-index="{{ index }}"></span>
+                        <span class="" data-type="cooking" data-value="3"
+                              data-picture="{{ pic.slug }}" data-index="{{ index }}"></span>
+                        <span class="" data-type="cooking" data-value="4"
+                              data-picture="{{ pic.slug }}" data-index="{{ index }}"></span>
+                        <span class="" data-type="cooking" data-value="5"
+                              data-picture="{{ pic.slug }}" data-index="{{ index }}"></span>
+                     </div>
+
+                    <script>GetUserRatings({{ index }});</script>
+
+                </div>
+
+
+            </div>
+
+        <!-- ################################################################################ -->
+
+        <div class="profilePost">
+            {% get_position pic pics as index %}
+            <img class="PPimage" src="{{ pic.picture.url }}" onclick="viewBigPost({{ index }})">
+            <div class="PPmiddle" onclick="viewBigPost({{ index }})">
+                <div class="PPratings">
+
+                        {% get_pic_ratings pic as details %}
+
+                        <div id="health_rating {{ index }}" data-rating="{{ details.health }}">
+                            <h2>Health</h2>
+                            <span class=""></span>
+                            <span class=""></span>
+                            <span class=""></span>
+                            <span class=""></span>
+                            <span class=""></span>
+                        </div>
+
+                        <div id="style_rating {{ index }}" data-rating="{{ details.style }}">
+                            <h2>Style</h2>
+                            <span class=""></span>
+                            <span class=""></span>
+                            <span class=""></span>
+                            <span class=""></span>
+                            <span class=""></span>
+                        </div>
+
+                        <div id="cooking_rating {{ index }}" data-rating="{{ details.cooking }}">
+                            <h2>Cooking</h2>
+                            <span class=""></span>
+                            <span class=""></span>
+                            <span class=""></span>
+                            <span class=""></span>
+                            <span class=""></span>
+                        </div>
+
+                        <script> GetRatings( {{ index }} );</script>
+                    </div>
+             </div>
+
+        </div>
+
+    {% endfor %}
+    </div>
+
+    <script src="{% static 'js/rating_ajax.js' %}"></script>
+{% endblock %}
