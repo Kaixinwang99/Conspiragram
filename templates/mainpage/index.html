@@ -17,7 +17,7 @@
 
 
 <div id="background">
-    <img src="{% static 'images/index_bg.jpg' %}"/>
+    <img src="{% static 'images/default_avatar.jpg' %}"/>
 </div>
 
 
@@ -35,7 +35,10 @@
                 </p>
                 {% endfor %}
 
-            <input type="submit" name="submit" class="submit" value="Login" />
+            <!--<input type="submit" name="submit" class="submit" value="Login" />-->
+			<div id="login">
+				<a href="{% url 'auth_login'%}" class="button_link">Login</a>
+			</div>
         </form>
 
         <div class="horizontal_container">
@@ -47,8 +50,16 @@
                 <div id="line_right" class="line">  </div>
 
         </div>
-
-        <button id ="sign" class="submit sign_up" > Sign Up! </button>
+		<div>
+			<p>  ----------------------------------------------------- </p>
+		</div>
+		
+		
+		<div id="sign">
+		<a href="{% url 'registration_register'%}" class="button_link">Sign Up</a>
+		</div>
+		
+		
 
         <!-- The Modal -->
             <div id="signModal" class="modal_first">

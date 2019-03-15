@@ -14,8 +14,9 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-#template dir
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
+STATIC_DIR = os.path.join(BASE_DIR, 'static')##
+MEDIA_DIR = os.path.join(BASE_DIR, 'media')##
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
@@ -38,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-	'web',
+	'mainpage',
 	'registration',
 ]
 
@@ -65,6 +66,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+				'django.template.context_processors.media',
             ],
         },
     },
@@ -120,9 +122,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
+STATICFILES_DIRS  = [STATIC_DIR,]##
 STATIC_URL = '/static/'
-
-
+MEDIA_ROOT = MEDIA_DIR##
+MEDIA_URL = '/media/'##
 #user login part
 
 # If True, users can register
@@ -132,12 +135,19 @@ ACCOUNT_ACTIVATION_DAYS = 70
 # If True, the user will be automatically logged in.
 REGISTRATION_AUTO_LOGIN = True
 # The page you want users to arrive at after they successfully log in
-LOGIN_REDIRECT_URL = '/web/'
+LOGIN_REDIRECT_URL = '/mainpage/'
 # The page users are directed to if they are not logged in,
 # and are trying to access pages requiring authentication
-LOGIN_URL = '/accounts/login/'
+LOGIN_URL = '/mainpage/'
 
-
+#for reset password
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' 
+EMAIL_USE_SSL = True
+EMAIL_HOST ='smtp.student.gla.ac.uk'  # 如果是 163 改成 smtp.163.com
+EMAIL_PORT = 586
+EMAIL_HOST_USER = '2358931p@student.gla.ac.uk'#'1006431552kaixin@gmail.com' # email
+EMAIL_HOST_PASSWORD = 'pmm000206'#'WANGKAIxin2014' # password
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 
 
