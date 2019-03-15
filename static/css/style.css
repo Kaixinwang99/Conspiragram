@@ -36,7 +36,7 @@ h6{
     width: 10%;
     display: inline-block;
     margin:0 auto;
-    color:#4CAF50;
+    color:#A52415;
 }
 
 input[type=file]{
@@ -70,7 +70,7 @@ input[type=file]{
 	margin-top: 5px;
 }
 #header {
-    background-color: #4CAF50;
+    background-color: #A52415;
     position: fixed;
     width: 100%;
     height: 85px;
@@ -126,7 +126,7 @@ input[type=file]{
     top: 17%;
     left: 30%;
     border-radius: 50%;
-    border: 4px solid #4CAF50;
+    border: 4px solid #A52415;
     padding-top: 15%;
     padding-left: 25%;
     padding-right:15%;
@@ -146,7 +146,7 @@ input[type=file]{
     top: 17%;
     left: 30%;
     border-radius: 50%;
-    border: 4px solid #4CAF50;
+    border: 4px solid #A52415;
     padding-top: 15%;
     padding-left: 25%;
     padding-right:15%;
@@ -162,7 +162,7 @@ input[type=file]{
 
 
 .submit{
-    background-color: #4CAF50;
+    background-color: #A52415;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
@@ -516,7 +516,7 @@ font-family: times new roman;
     top: 80%;
     left: 83%;
     border-radius: 50%;
-    background-color: #4CAF50;
+    background-color: #A52415;
     color: white;
     font-size: 3em;
     font-weight: 1000;
@@ -645,7 +645,7 @@ font-family: times new roman;
 	padding-right: 3%;
 }
 .signout{
-	background-color: #4CAF50;
+	background-color: #A52415;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
@@ -685,7 +685,7 @@ font-family: times new roman;
 	margin-top: 1%;
 	margin-bottom: 1%;
 	font-family: "Segoe UI",Arial,sans-serif;
-	color: #4CAF50
+	color: #A52415
 	
 }
 .profileContainer{
@@ -777,7 +777,7 @@ font-family: times new roman;
 	
 }
 .submitEdit{
-    background-color: #4CAF50;
+    background-color: #A52415;
     color: white;
     padding: 14px 20px;
     border: none;
@@ -822,7 +822,7 @@ font-family: times new roman;
 	font-weight:400;
 }
 .submitComment{
-    background-color: #4CAF50;
+    background-color: #A52415;
     color: white;
     padding: 14px 20px;
     border: none;
