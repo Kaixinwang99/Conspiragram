@@ -87,7 +87,7 @@ def populate():
 	for p in pictures.items:
 		add_picture(p["UserID"], p["true"], p["false"], p["date"], p["location"], p["picid"])
 	for c in comments.items:
-		add_comment(c["picid"], c["userid"], c["commentid"], c["text"]
+		add_comment(c["picid"], c["userid"], c["commentid"], c["text"])
 	
 	
 def add_user(id, name, rank, rankscore):
