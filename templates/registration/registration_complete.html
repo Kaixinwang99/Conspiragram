@@ -1,0 +1,11 @@
+{% extends "mainpage/base.html" %}
+{% load i18n %}
+
+{% block body_block %}
+
+<p>{% trans "Thank you for register." %}</p>
+<br>
+<div id="index">
+<a href="{% url 'index'%}" class= "link_style">go back to index page.</a>
+</div>
+{% endblock %}

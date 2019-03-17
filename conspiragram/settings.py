@@ -143,10 +143,11 @@ LOGIN_URL = '/mainpage/'
 #for reset password
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' 
 EMAIL_USE_SSL = True
-EMAIL_HOST ='smtp.student.gla.ac.uk'  # 如果是 163 改成 smtp.163.com
-EMAIL_PORT = 586
-EMAIL_HOST_USER = '2358931p@student.gla.ac.uk'#'1006431552kaixin@gmail.com' # email
-EMAIL_HOST_PASSWORD = 'pmm000206'#'WANGKAIxin2014' # password
+EMAIL_HOST ='smtp.gmail.com'  # 如果是 163 改成 smtp.163.com
+EMAIL_PORT = 466
+EMAIL_HOST_USER = '1006431552kaixin@gmail.com' # email
+EMAIL_HOST_PASSWORD = 'WANGKAIxin2014' # password
+SERVER_EMAIL = EMAIL_HOST_USER
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 

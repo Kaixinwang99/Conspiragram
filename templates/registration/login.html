@@ -1,16 +1,44 @@
-{% 
-{% load i18n %}
+{%extends "mainpage/base.html"%}
+{%load staticfiles%}
 {% block resources %}
-	<h1>Login</h1>
-	<form method="post" action=".">
-		{% csrf_token %} 
-		{{ form.as_p }}
-
-		<input type="submit" value="{% trans 'Log in' %}" />
-		<input type="hidden" name="next" value="{{ next }}" />
-	</form>
-
-	<p>{% trans "Forgot password" %}? <a href="{% url 'auth_password_reset' %}">{% trans "Reset it" %}</a>!</p>
-	<p>{% trans "Not member" %}? <a href="{% url 'registration_register' %}">{% trans "Register" %}</a>!</p>
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" > </link>
+<script src="{% static 'js/signup.js' %}"></script>
 {% endblock %}
+
+{%block body_block%}
+<br>
+<link href="http://v4-alpha.getbootstrap.com/examples/signin/signin.css"
+	rel="stylesheet">
+<div class="jumbotron">
+	<h1 class="display-3">Login</h1>
+</div>
+
+{% if form.errors %}
+<p>Username or Password is wrong, please try again </p>
+{% endif %}
+
+<form class="form-signin" role="form" method="post" action=".">
+	{% csrf_token %}
+	<h2 class="form-signin-heading">Please sign in</h2>
+	<div>
+	<label for="inputUsername" class="sr-only">Username:</label>
+	<input type="text" name="username" id="id_username" class="form-control"
+		placeholder="Username" required autofocus>
+	</div>
+	<br>
+	
+	<div>
+	<label for="inputPassword" class="sr-only">Password :</label>
+	<input type="password" name="password" id="id_password" class="form-control"
+		placeholder="Password" required>
+	</div>
+	
+	<button class="btn btn-lg btn-primary btn-block" type="submit"
+		value="Submit" />Sign in</button>
+</form>
+<p>Forget password? <a href="{% url 'auth_password_reset' %}" class="link_style"> &#160 Reset it</a></p>
+<br>
+<p>Not a member? <a href="{% url 'registration_register' %}" class="link_style"> &#160 Register here</a></p>
+{%endblock%}
 
