@@ -23,6 +23,7 @@ class Picture(models.Model):
     Date = models.DateField(auto_now_add=True)
     Location = models.CharField(max_length=128)
     PictureID = models.IntegerField (unique = True)
+    title = models.CharField(max_length=128)
     def __str__(self):
         return self.PictureID
 
