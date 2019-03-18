@@ -4,23 +4,17 @@ from django.contrib.auth.models import User
 
 class UserProfile(models.Model):
     User = models.OneToOneField(User)
-    Website = models.URLField(blank=True)
+    avatar = models.ImageField(upload_to = 'profile_images',blank = True)
+    Rank = models.CharField(max_length=128)
+    RankScore = models.FloatField()
     slug = models.SlugField(unique=True)
     
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.User.Username)
+        self.slug = slugify(self.User.username)
         super(UserProfile, self).save(*args, **kwargs)
     
     def __str__(self):
         return self.User.UserID
-    
-class User(models.Model):
-    UserID = models.EmailField(max_length=254, unique = True)
-    Username = models.CharField(max_length=128)
-    Rank = models.CharField(max_length=128)
-    RankScore = models.FloatField()
-    def __str__(self):
-        return self.UserID
 
 class Picture(models.Model):
     UserID = models.ForeignKey(User)
