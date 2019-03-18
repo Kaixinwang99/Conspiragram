@@ -5,6 +5,12 @@ from django.contrib.auth.models import User
 class UserProfile(models.Model):
     User = models.OneToOneField(User)
     Website = models.URLField(blank=True)
+    slug = models.SlugField(unique=True)
+    
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.User.Username)
+        super(UserProfile, self).save(*args, **kwargs)
+    
     def __str__(self):
         return self.User.UserID
     
@@ -28,6 +34,7 @@ class Picture(models.Model):
 
 class Comments(models.Model):
     Picture = models.ForeignKey(Picture)
+    User = models.ForeignKey(User)
     Text = models.CharField(max_length=128)
     def __str__(self):
         return self.Text
