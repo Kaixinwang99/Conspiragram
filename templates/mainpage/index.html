@@ -17,7 +17,7 @@
 
 
 <div id="background">
-    <img src="{% static 'images/index_bg.jpg' %}"/>
+    <img src="{% static 'images/default_avatar.jpg' %}"/>
 </div>
 
 
@@ -35,20 +35,31 @@
                 </p>
                 {% endfor %}
 
-            <input type="submit" name="submit" class="submit" value="Login" />
+            <!--<input type="submit" name="submit" class="submit" value="Login" />-->
+			<div id="login">
+				<a href="{% url 'auth_login'%}" class="button_link">Login</a>
+			</div>
         </form>
 
-        <div class="horizontal_container">
+       <br>
+		
+		<div id="sign">
+		<a href="{% url 'registration_register'%}" class="button_link">Sign Up</a>
+		</div>
+		<div class="horizontal_container">
 
-                <div id="line_left" class="line"> </div>
+            <div id="line_left" class="line"> </div>
 
-                <h6>OR</h6>
+            <h6>OR</h6>
 
-                <div id="line_right" class="line">  </div>
-
-        </div>
-
-        <button id ="sign" class="submit sign_up" > Sign Up! </button>
+            <div id="line_right" class="line">  </div>
+		
+		<p>
+		Forget password? <a href="{% url 'auth_password_reset' %}" class="link_style">reset password</a>
+		<br>
+		<br>
+		sign out? <a href="{% url 'index' %}" class="link_style">log out</a>
+		</p>
 
         <!-- The Modal -->
             <div id="signModal" class="modal_first">

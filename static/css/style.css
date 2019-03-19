@@ -917,3 +917,31 @@ font-family: times new roman;
     src: url("/static/fonts/Mom.ttf");
 
 }
+
+a.button_link {
+	display: inline-block;
+	width: 280px;
+	height: 40px;
+	line-height: 40px;
+	background: green;
+	color: #FFFFFF;
+	text-align: center;
+	}
+a.button_link:hover {
+		background: blue;
+	}
+
+a.link_style{
+	display:inline-block;
+	color:blue;
+	}
+a.link_style:hover{
+	font-size: 1.05em;
+	padding-right: 10%;
+}		
+
+.helptext{
+	display:inline-block;
+	font-size: 0.8em;
+	font-style: italic;
+}
