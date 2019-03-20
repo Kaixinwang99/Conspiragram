@@ -1,7 +1,10 @@
 from django.shortcuts import render
 from datetime import datetime
-#from django.contrib.auth import authenticate, login
+from mainpage.models import Picture,Comments
+#from mainpage.forms import
+from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect, HttpResponse
+from django.core.urlresolvers import reverse
 
 # A helper method
 def get_server_side_cookie(request, cookie, default_val=None):
