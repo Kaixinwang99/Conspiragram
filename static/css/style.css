@@ -920,16 +920,21 @@ font-family: times new roman;
 
 a.button_link {
 	display: inline-block;
-	width: 280px;
-	height: 40px;
+	width: 300px;
+	height: 50px;
 	line-height: 40px;
-	background: green;
+	background:  #A52415;
 	color: #FFFFFF;
 	text-align: center;
+	padding: 10px 10px;
+                margin: 12px 0;
+
 	}
 a.button_link:hover {
-		background: blue;
+		background: #10C277;
 	}
+
+
 
 a.link_style{
 	display:inline-block;

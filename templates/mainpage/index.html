@@ -35,7 +35,6 @@
                 </p>
                 {% endfor %}
 
-            <!--<input type="submit" name="submit" class="submit" value="Login" />-->
 			<div id="login">
 				<a href="{% url 'auth_login'%}" class="button_link">Login</a>
 			</div>
@@ -44,7 +43,7 @@
        <br>
 		
 		<div id="sign">
-		<a href="{% url 'registration_register'%}" class="button_link">Sign Up</a>
+		<a href="{% url 'registration_register' %}" class="button_link">Sign Up</a>
 		</div>
 		<div class="horizontal_container">
 
@@ -56,9 +55,7 @@
 		
 		<p>
 		Forget password? <a href="{% url 'auth_password_reset' %}" class="link_style">reset password</a>
-		<br>
-		<br>
-		sign out? <a href="{% url 'index' %}" class="link_style">log out</a>
+	
 		</p>
 
         <!-- The Modal -->

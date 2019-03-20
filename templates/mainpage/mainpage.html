@@ -247,14 +247,15 @@ function myFunction() {
 </script>
 
         <!-- Account options -->
-
-        <form id="sign_out_form" method="POST">
-            {% csrf_token %}
-            <input type="submit" name="submit" class="signout" value="Sign Out" />
-        </form>
-
-
+	<div>	
+        <form>
+            {% csrf_token %}      
+			<a href="{% url 'auth_logout' %}?next=/mainpage/" class="button_link">Sign Out</a>
+			
+		</form>
     </div>
+
+        
 
     <span onclick="document.getElementById('id01').style.display='block'" class="add_img"> +</span>
 

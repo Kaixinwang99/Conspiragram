@@ -22,12 +22,12 @@ class Picture(models.Model):
     FalseVotes = models.IntegerField(default=0)
     Date = models.DateField(auto_now_add=True)
     Location = models.CharField(max_length=128)
-<<<<<<< HEAD
+#<<<<<<< HEAD
     PictureID = models.AutoField (primary_key = True)
-=======
+#=======
     PictureID = models.IntegerField (unique = True)
     title = models.CharField(max_length=128)
->>>>>>> c65e13cc1514617b940a4ad29c87061ecac8da98
+#>>>>>>> c65e13cc1514617b940a4ad29c87061ecac8da98
     def __str__(self):
         return self.PictureID
 
