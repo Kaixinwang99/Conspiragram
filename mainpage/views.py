@@ -56,7 +56,7 @@ def profile_edit(request):
 def user_profile(request, user_profile_slug):
 
     try:
-        userprofile = UserProfile.objects.get(slug=user_profile_slug)
+        userprofile = UserProfile.objects.get(slug=user_name_slug)
         context_dict['UserProfile'] = userprofile
     except UserProfile.DoesNotExist:
         context_dict['UserProfile'] = None
