@@ -18,6 +18,8 @@ class UserProfile(models.Model):
 
 class Picture(models.Model):
     UserID = models.ForeignKey(User)
+    avatar = models.ImageField(upload_to = 'user_pictures',blank = True)
+    description = models.CharField(max_length=512)
     TruthVotes = models.IntegerField(default=0)
     FalseVotes = models.IntegerField(default=0)
     Date = models.DateField(auto_now_add=True)
@@ -31,7 +33,7 @@ class Comments(models.Model):
     Picture = models.ForeignKey(Picture)
     User = models.ForeignKey(User)
     Text = models.CharField(max_length=128)
-	CommentID = models.AutoField(primary_key = True)
+    CommentID = models.AutoField(primary_key = True)
     def __str__(self):
         return self.Text
     
