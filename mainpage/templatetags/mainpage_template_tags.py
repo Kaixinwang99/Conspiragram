@@ -1,10 +1,10 @@
 from django import template
 from mainpage.models import Picture, Comments
-
+'''
 register = template.Library()
 
 @register.inclusion_tag('mainpage/mainpage.html')
-'''
+
 def get_date_posted():
     return
 #{% get_date_posted pic as date %}
