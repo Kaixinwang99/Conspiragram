@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from datetime import datetime
-from mainpage.models import Picture,Comments
+from mainpage.models import Picture,Comments,UserProfile
 #from mainpage.forms import
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect, HttpResponse
@@ -53,8 +53,14 @@ def profile_edit(request):
 	request = render(request, 'mainpage/profile_edit.html', context={})
 	return request
 
-def user_profile(request):
-	request = render(request, 'mainpage/user_profile.html', context={})
+def user_profile(request, user_profile_slug):
+
+    try:
+        userprofile = UserProfile.objects.get(slug=user_profile_slug)
+        context_dict['UserProfile'] = userprofile
+    except UserProfile.DoesNotExist:
+        context_dict['UserProfile'] = None
+    request = render(request, 'mainpage/user_profile.html', context_dict)
 	return request
 
 #@login_required

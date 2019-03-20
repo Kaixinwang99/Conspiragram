@@ -5,7 +5,6 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^about/$', views.about, name='about'),
     url(r'^mainpage/$', views.mainpage, name='mainpage'),
-    url(r'^user_profile/$', views.user_profile, name='user_profile'),
     url(r'^profile_edit/$', views.profile_edit, name='profile_edit'),
     
    # url(r"add_comment/$", views.add_comment, name="comment"),
