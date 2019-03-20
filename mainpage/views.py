@@ -54,14 +54,13 @@ def profile_edit(request):
 	return request
 
 def user_profile(request, user_profile_slug):
-
-    try:
-        userprofile = UserProfile.objects.get(slug=user_name_slug)
-        context_dict['UserProfile'] = userprofile
-    except UserProfile.DoesNotExist:
-        context_dict['UserProfile'] = None
-    request = render(request, 'mainpage/user_profile.html', context_dict)
-	return request
+        try:
+                userprofile = UserProfile.objects.get(slug=user_name_slug)
+                context_dict['UserProfile'] = userprofile
+        except UserProfile.DoesNotExist:
+                context_dict['UserProfile'] = None
+                request = render(request, 'mainpage/user_profile.html', context_dict)
+                return request
 
 #@login_required
 def mainpage(request):

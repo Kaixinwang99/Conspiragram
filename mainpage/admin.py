@@ -1,7 +1,7 @@
 from django.contrib import admin
-from rango.models import Picture,Comments
-from rango.models import UserProfile
-
+from mainpage.models import Picture,Comments
+from mainpage.models import UserProfile
+'''
 #I just did a sample code you can change and fix it as you wish
 class PictureAdmin(admin.ModelAdmin):
     list_display = ("picture", "description", "TruthVotes", "FalseVotes", "Location")
@@ -15,3 +15,4 @@ class UserProfileAdmin(admin.ModelAdmin):
 admin.site.register(Picture, PictureAdmin)
 admin.site.register(Comments, CommentsAdmin)
 admin.site.register(UserProfile,UserProfileAdmin)
+'''
