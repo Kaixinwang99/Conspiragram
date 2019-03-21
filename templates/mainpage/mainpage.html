@@ -1,5 +1,6 @@
 {% extends 'mainpage/base.html' %}
 {% load staticfiles %}
+{% load mainpage_tags %}
 {% block resources %}
     <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -96,49 +97,49 @@
 
                     {% get_current_user_pic_ratings user pic as details %}
 
-                    <div class="ratings_container" id="user_health_rating {{ index }}"
-                         data-rating="{{ details.health }}">
-                        <h3>Health</h3>
-                        <span class="" data-type="health" data-value="1"
+                    <div class="ratings_container" id="user_truth_rating {{ index }}"
+                         data-rating="{{ details.truth }}">
+                        <h3>Real</h3>
+                        <span class="" data-type="truth" data-value="1"
                               data-picture="{{ pic.slug }}" data-index="{{ index }}"></span>
-                        <span class="" data-type="health" data-value="2"
+                        <span class="" data-type="truth"  data-value="2"
                               data-picture="{{ pic.slug }}" data-index="{{ index }}"></span>
-                        <span class="" data-type="health" data-value="3"
+                        <span class="" data-type="truth"  data-value="3"
                               data-picture="{{ pic.slug }}" data-index="{{ index }}"></span>
-                        <span class="" data-type="health" data-value="4"
+                        <span class="" data-type="truth"  data-value="4"
                               data-picture="{{ pic.slug }}" data-index="{{ index }}"></span>
-                        <span class="" data-type="health" data-value="5"
+                        <span class="" data-type="truth"  data-value="5"
                               data-picture="{{ pic.slug }}" data-index="{{ index }}"></span>
 
                     </div>
 
-                    <div class="ratings_container" id="user_style_rating {{ index }}"
-                         data-rating="{{ details.style }}">
-                        <h3>Style</h3>
-                        <span class="" data-type="style" data-value="1"
+                    <div class="ratings_container" id="user_fake_rating {{ index }}"
+                         data-rating="{{ details.fake }}">
+                        <h3>Fake</h3>
+                        <span class="" data-type="fake" data-value="1"
                               data-picture="{{ pic.slug }}" data-index="{{ index }}"></span>
-                        <span class="" data-type="style" data-value="2"
+                        <span class="" data-type="fake" data-value="2"
                               data-picture="{{ pic.slug }}" data-index="{{ index }}"></span>
-                        <span class="" data-type="style" data-value="3"
+                        <span class="" data-type="fake" data-value="3"
                               data-picture="{{ pic.slug }}" data-index="{{ index }}"></span>
-                        <span class="" data-type="style" data-value="4"
+                        <span class="" data-type="fake" data-value="4"
                               data-picture="{{ pic.slug }}" data-index="{{ index }}"></span>
-                        <span class="" data-type="style" data-value="5"
+                        <span class="" data-type="fake" data-value="5"
                               data-picture="{{ pic.slug }}" data-index="{{ index }}"></span>
                     </div>
 
-                    <div class="ratings_container" id="user_cooking_rating {{ index }}"
-                        data-rating="{{ details.cooking }}">
-                        <h3>Cooking</h3>
-                        <span class="" data-type="cooking" data-value="1"
+                    <div class="ratings_container" id="user_verified_rating {{ index }}"
+                        data-rating="{{ details.verified }}">
+                        <h3>Verified</h3>
+                        <span class="" data-type="verified" data-value="1"
                               data-picture="{{ pic.slug }}" data-index="{{ index }}"></span>
-                        <span class="" data-type="cooking" data-value="2"
+                        <span class="" data-type="verified" data-value="2"
                               data-picture="{{ pic.slug }}" data-index="{{ index }}"></span>
-                        <span class="" data-type="cooking" data-value="3"
+                        <span class="" data-type="verified" data-value="3"
                               data-picture="{{ pic.slug }}" data-index="{{ index }}"></span>
-                        <span class="" data-type="cooking" data-value="4"
+                        <span class="" data-type="verified" data-value="4"
                               data-picture="{{ pic.slug }}" data-index="{{ index }}"></span>
-                        <span class="" data-type="cooking" data-value="5"
+                        <span class="" data-type="verified" data-value="5"
                               data-picture="{{ pic.slug }}" data-index="{{ index }}"></span>
                      </div>
 
@@ -159,8 +160,8 @@
 
                         {% get_pic_ratings pic as details %}
 
-                        <div id="health_rating {{ index }}" data-rating="{{ details.health }}">
-                            <h2>Health</h2>
+                        <div id="truth_rating {{ index }}" data-rating="{{ details.truth }}">
+                            <h2>Real</h2>
                             <span class=""></span>
                             <span class=""></span>
                             <span class=""></span>
@@ -168,8 +169,8 @@
                             <span class=""></span>
                         </div>
 
-                        <div id="style_rating {{ index }}" data-rating="{{ details.style }}">
-                            <h2>Style</h2>
+                        <div id="fake_rating {{ index }}" data-rating="{{ details.fake }}">
+                            <h2>Fake</h2>
                             <span class=""></span>
                             <span class=""></span>
                             <span class=""></span>
@@ -177,8 +178,8 @@
                             <span class=""></span>
                         </div>
 
-                        <div id="cooking_rating {{ index }}" data-rating="{{ details.cooking }}">
-                            <h2>Cooking</h2>
+                        <div id="verified_rating {{ index }}" data-rating="{{ details.verified }}">
+                            <h2>verified</h2>
                             <span class=""></span>
                             <span class=""></span>
                             <span class=""></span>
@@ -218,24 +219,24 @@
 
             {% get_user_stats user as stats %}
             <div class="stats_container">
-                <h5>Health</h5>
+                <h5>Real</h5>
             <div class="stat">
-                 <div id="purple" data-stat="{{ stats.health }}"> {{ stats.health }}</div>
+                 <div id="purple" data-stat="{{ stats.truth }}"> {{ stats.truth }}</div>
 
             </div>
             </div>
 
             <div class="stats_container">
-                <h5>Style</h5>
+                <h5>Fake</h5>
                     <div class="stat">
-                        <div id="red" data-stat="{{ stats.style }}"> {{ stats.style }}</div>
+                        <div id="red" data-stat="{{ stats.fake }}"> {{ stats.fake }}</div>
                     </div>
             </div>
 
             <div class="stats_container">
-                <h5>Cooking</h5>
+                <h5>Verified</h5>
                     <div class="stat">
-                        <div id="blue" data-stat="{{ stats.cooking }}"> {{ stats.cooking }}</div>
+                        <div id="blue" data-stat="{{ stats.verified }}"> {{ stats.verified }}</div>
                     </div>
 
             </div>
@@ -247,15 +248,14 @@ function myFunction() {
 </script>
 
         <!-- Account options -->
-	<div>	
-        <form>
-            {% csrf_token %}      
-			<a href="{% url 'auth_logout' %}?next=/mainpage/" class="button_link">Sign Out</a>
-			
-		</form>
-    </div>
 
-        
+        <form id="sign_out_form" method="POST">
+            {% csrf_token %}
+            <input type="submit" name="submit" class="signout" value="Sign Out" />
+        </form>
+
+
+    </div>
 
     <span onclick="document.getElementById('id01').style.display='block'" class="add_img"> +</span>
 

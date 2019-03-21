@@ -1,3 +1,6 @@
+from __future__ import unicode_literals
+import itertools
+
 from django.db import models
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User, PermissionsMixin
@@ -5,12 +8,9 @@ from django.contrib.auth.base_user import AbstractBaseUser
 from django.utils.translation import ugettext_lazy as _
 from django.core.mail import send_mail
 
-import itertools
-from __future__ import unicode_literals
-
 from datetime import *
 from django.utils import timezone
-from foodfeed.managers import UserManager
+from mainpage.managers import UserManager
 
 class User(AbstractBaseUser, PermissionsMixin):
 
