@@ -1,13 +1,13 @@
 window.onload = function(){
 
-    var health = document.getElementById("purple");
-    var style = document.getElementById("red");
-    var cooking = document.getElementById("blue");
+    var truth = document.getElementById("green");
+    var fake = document.getElementById("red");
+    var verified = document.getElementById("blue");
 
-    var total = ( parseFloat(health.dataset.stat) + parseFloat(style.dataset.stat) + parseFloat(cooking.dataset.stat));
-    var h = parseFloat(health.dataset.stat);
-    var s = parseFloat(style.dataset.stat);
-    var c = parseFloat(cooking.dataset.stat);
+    var total = ( parseFloat(truth.dataset.stat) + parseFloat(fake.dataset.stat) + parseFloat(verified.dataset.stat));
+    var h = parseFloat(truth.dataset.stat);
+    var s = parseFloat(fake.dataset.stat);
+    var c = parseFloat(verified.dataset.stat);
     var list = [h,s,c]
 
     var longest = 0;
@@ -29,14 +29,12 @@ window.onload = function(){
         }
     }
 
-    SetStat(percent[0], health);
-    SetStat(percent[1], style);
-    SetStat(percent[2], cooking);
+    SetStat(percent[0], truth);
+    SetStat(percent[1], fake);
+    SetStat(percent[2], verified);
 }
 
 function SetStat(percentage, stat_type) {
 
     stat_type.style.width = (percentage*100) + "%" ;
-
-
 }
