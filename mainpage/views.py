@@ -53,12 +53,12 @@ def index(request):
             sign_up_form.save()
             user_email = sign_up_form.cleaned_data.get("email")
             user_password = sign_up_form.cleaned_data.get("password1")
+            user = authenticate(email=user_email, password=user_password)
 
         elif request.POST.get("submit") == "Login":
             user_email = request.POST.get("email")
             user_password = request.POST.get("password")
-
-        user = authenticate(email=user_email, password=user_password)
+            user = authenticate(email=user_email, password=user_password)
 
         if user:
             if user.is_active:
