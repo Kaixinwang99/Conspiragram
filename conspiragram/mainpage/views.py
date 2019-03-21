@@ -105,13 +105,13 @@ def mainpage(request):
         upload_form = ImageUploadForm()
         comment_form = CommentSubmissionForm()
 
-    if request.user.is_authenticated():
-        request = render(request, 'mainpage/mainpage.html', context={})
-        return request
-    else:
-        context_dict={}
-        request = render(request, 'mainpage/index.html', context_dict)
-        return request
+    # if request.user.is_authenticated():
+    #     request = render(request, 'mainpage/mainpage.html', context={})
+    #     return request
+    # else:
+    #     context_dict={}
+    #     request = render(request, 'mainpage/index.html', context_dict)
+    #     return request
 
     return render(request, "mainpage/mainpage.html", {"feed": feed,
                                                       "upload_form": upload_form,
@@ -158,25 +158,12 @@ def user_profile(request, user_name_slug):
     return render(request, "mainpage/user_profile.html", {"owner": User.objects.get(slug=user_name_slug),
                                                           "comment_form": comment_form})
 
-
-def add_comment(request):
-    if request.is_ajax():
-        new_comment = Comment(author=request.user,
-                              picture=Picture.objects.get(slug=request.GET.get("picture_slug", "")),
-                              comment=request.GET.get("comment", ""))
-        new_comment.save()
-
-        return HttpResponse("")
-    else:
-        raise Http404
-
 def about(request):
         # context_dict={}
         # visitor_cookie_handler(request)
         # context_dict['visits']=request.session['visits']
         # request = render(request, 'mainpage/about.html', context_dict)
         return render(request, "mainpage/about.html")
-
 
 def make_rating(request):
     if request.is_ajax():
@@ -203,7 +190,18 @@ def make_rating(request):
     else:
         raise Http404
 
-def restricted(request):
-        return HttpResponse("Since you're logged in, you can see this text!")
+def add_comment(request):
+    if request.is_ajax():
+        new_comment = Comment(author=request.user,
+                              picture=Picture.objects.get(slug=request.GET.get("picture_slug", "")),
+                              comment=request.GET.get("comment", ""))
+        new_comment.save()
+
+        return HttpResponse("")
+    else:
+        raise Http404
+
+# def restricted(request):
+#         return HttpResponse("Since you're logged in, you can see this text!")
 
 	

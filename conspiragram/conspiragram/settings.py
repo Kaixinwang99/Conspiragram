@@ -28,7 +28,8 @@ SECRET_KEY = 'jf_+o&zp$2ls4h@%!7^mk=@%kj@p%fa5^gxsrxfxa@(%p!7r(q'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['http://kaixinwang.pythonanywhere.com/']
+ALLOWED_HOSTS = []
+# ['http://kaixinwang.pythonanywhere.com/'],
 
 
 # Application definition
