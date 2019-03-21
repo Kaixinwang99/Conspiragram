@@ -11,19 +11,19 @@ def populate():
 		{"ID": "DDD@example.com",
 		"name": "DoctorDetectiveDave",
 		"rank": "Expert",
-		"rankscore": 83}
+		"rankscore": 83},
 		{"ID": "Shauna239@example.com",
 		"name": "ShaunaShining",
 		"rank": "Sighter",
-		"rankscore": 60}
+		"rankscore": 60},
 		{"ID": "theworst@example.com",
 		"name": "TheWorst",
 		"rank": "None",
-		"rankscore": 1}
+		"rankscore": 1},
 		{"ID": "theworst2@example.com",
 		"name": "NotAnAlt",
 		"rank": "None",
-		"rankscore": 50}
+		"rankscore": 50},
 		{"ID": "prolificposter@example.com",
 		"name": "ProlificPoster",
 		"rank": "Expert",
@@ -35,19 +35,19 @@ def populate():
 		"false": 20,
 		"date": "2018-06-20",
 		"location": "Edinburgh",
-		"picid": 0}
+		"picid": 0},
 		{"UserID": "prolificposter@example",
 		"true": 270,
 		"false": 55,
 		"date": "2018-12-25",
 		"location": "London",
-		"picid": 1}
+		"picid": 1},
 		{"UserID": "theworst@example",
 		"true": 1,
 		"false": 358,
 		"date": "2019-03-13",
 		"location": "Null Island",
-		"picid": 2}
+		"picid": 2},
 		{"UserID": "prolificposter@example",
 		"true": 1024,
 		"false": 556,
@@ -58,35 +58,35 @@ def populate():
 	comments = [
 		{"picid": 0,
 		"commentid": 0,
-		"userid": "theworst@example"
-		"text": "lol fake"}
+		"userid": "theworst@example",
+		"text": "lol fake"},
 		{"picid": 1,
 		"commentid": 0,
-		"userid": "theworst@example"
-		"text": "lol fake"}
+		"userid": "theworst@example",
+		"text": "lol fake"},
 		{"picid": 3,
 		"commentid": 0,
-		"userid": "theworst@example"
-		"text": "lol fake"}
+		"userid": "theworst@example",
+		"text": "lol fake"},
 		{"picid": 2,
 		"commentid": 0,
-		"userid": "theworst2@example"
-		"text": "best pic on here keep up the good work"}
+		"userid": "theworst2@example",
+		"text": "best pic on here keep up the good work"},
 		{"picid": 0,
 		"commentid": 1,
-		"userid": "DDD@example"
-		"text": "could be real but that's really out of focus"}
+		"userid": "DDD@example",
+		"text": "could be real but that's really out of focus"},
 		{"picid": 0,
 		"commentid": 3,
-		"userid": "DDD@example"
+		"userid": "DDD@example",
 		"text": "Wow! This is incredible!"}
 	]
-	for u in users.items:
+	for u in users:
 		add_user(u["ID"], u["name"], u["rank"], u["rankscore"])
 		add_profile(u["ID"])
-	for p in pictures.items:
+	for p in pictures:
 		add_picture(p["UserID"], p["true"], p["false"], p["date"], p["location"], p["picid"])
-	for c in comments.items:
+	for c in comments:
 		add_comment(c["picid"], c["userid"], c["commentid"], c["text"])
 	
 	
@@ -103,7 +103,7 @@ def add_profile(id, site):
 	r.save()
 	return r
 	
-def add_picture(userid, true, false, date, loc, picid)
+def add_picture(userid, true, false, date, loc, picid):
 	p = Picture.objects.get_or_create(UserID = userid, PictureID = picid)
 	p.TruthVotes = true
 	p.FalseVotes = false
@@ -112,7 +112,7 @@ def add_picture(userid, true, false, date, loc, picid)
 	p.save()
 	return p
 	
-def add_comment(picid, userid, commentid, text)
+def add_comment(picid, userid, commentid, text):
 	c = Comments.object.get_or_create(Picture = picid, CommentID = commentid)
 	c.UserID = userid
 	c.Text = text
