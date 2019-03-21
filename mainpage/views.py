@@ -1,8 +1,7 @@
 from datetime import datetime
 
-from mainpage.models import Picture,Comments,UserProfile
+from mainpage.models import *
 from mainpage.forms import *
-from mainpage.models import User
 
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
@@ -36,41 +35,43 @@ def visitor_cookie_handler(request):
     request.session['visits'] = visits
     
 def index(request):
-        # context_dict={}
-        request.session.set_test_cookie()
-        visitor_cookie_handler(request)
-        context_dict['visits'] = request.session['visits']
-        # request = render(request, 'mainpage/index.html', context_dict)
-        
-        if request.user.is_authenticated():
-            return redirect("mainpage")
 
-        if request.method == "POST":
-            sign_up_form = SignUpForm(request.POST)
-            login_form = LogInForm(request.POST)
+    # context_dict={}
+    request.session.set_test_cookie()
+    visitor_cookie_handler(request)
+    context_dict['visits'] = request.session['visits']
+    # request = render(request, 'mainpage/index.html', context_dict)
 
-            if sign_up_form.is_valid() and request.POST.get("submit") == "Sign Up":
-                sign_up_form.save()
-                user_email = sign_up_form.cleaned_data.get("email")
-                user_password = sign_up_form.cleaned_data.get("password1")
+    if request.user.is_authenticated():
+        return redirect("foodfeed")
 
-            elif request.POST.get("submit") == "Login":
-                user_email = request.POST.get("email")
-                user_password = request.POST.get("password")
+    if request.method == "POST":
+        sign_up_form = SignUpForm(request.POST)
+        login_form = LogInForm(request.POST)
 
-            user = authenticate(email=user_email, password=user_password)
+        if sign_up_form.is_valid() and request.POST.get("submit") == "Sign Up":
+            sign_up_form.save()
+            user_email = sign_up_form.cleaned_data.get("email")
+            user_password = sign_up_form.cleaned_data.get("password1")
 
-            if user:
-                if user.is_active:
-                    login(request, user)
-                    return redirect("mainpage")
+        elif request.POST.get("submit") == "Login":
+            user_email = request.POST.get("email")
+            user_password = request.POST.get("password")
 
-        else:
-            sign_up_form = SignUpForm()
-            login_form = LogInForm()
+        user = authenticate(email=user_email, password=user_password)
 
-        return render(request, "mainpage/index.html", {"sign_up_form": sign_up_form,
-                                                       "login_form": login_form})
+        if user:
+            if user.is_active:
+                login(request, user)
+                return redirect("foodfeed")
+
+    else:
+        sign_up_form = SignUpForm()
+        login_form = LogInForm()
+
+    return render(request, "foodfeed/index.html", {"sign_up_form": sign_up_form,
+                                                   "login_form": login_form})
+
 	
 def about(request):
         context_dict={}
@@ -98,13 +99,14 @@ def user_profile(request, user_profile_slug):
 @login_required(login_url="index")
 def mainpage(request):
     feed = Picture.objects.order_by("-date_published")
-	if request.user.is_authenticated():
-		request = render(request, 'mainpage/mainpage.html', context={})
-		return request
-	else:
-		context_dict={}
-		request = render(request, 'mainpage/index.html', context_dict)
-		return request
+	
+    if request.user.is_authenticated():
+        request = render(request, 'mainpage/mainpage.html', context={})
+        return request
+    else:
+        context_dict={}
+        equest = render(request, 'mainpage/index.html', context_dict)
+        return request
 
     if request.method == "POST":
         if request.POST.get("submit") == "Sign Out":
