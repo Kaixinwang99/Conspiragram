@@ -59,6 +59,8 @@ def index(request):
             user_email = request.POST.get("email")
             user_password = request.POST.get("password")
             user = authenticate(email=user_email, password=user_password)
+        else:
+            user = authenticate(email="", password="")
 
         if user:
             if user.is_active:
