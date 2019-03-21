@@ -172,7 +172,7 @@ input[type=file]{
 
 }
 .submit:hover{
-    background-color: #10C277;
+    background-color: #c64d3f;
 }
 
 .container_index{
@@ -389,7 +389,7 @@ input[type=file]{
   text-align: center;
 }
 .ratings {
-  background-color:rgba(76, 175, 80, 0.9);
+  background-color:rgba(165, 36, 21, 1);
   color: white;
   font-size: 16px;
   padding: 16px 32px;
@@ -530,7 +530,7 @@ font-family: times new roman;
 
 }
 .add_img:hover{
-	background-color: #10C277
+	background-color: #c64d3f
 }
 .addModal{
 	border-radius: 1%;
@@ -593,8 +593,8 @@ font-family: times new roman;
 	font-size: 1.1em;
 	font-family: times new roman;
 }
-.checked_purple{
-	color: purple;
+.checked_green{
+	color: green;
 }
 .checked_red{
 	color: red;
@@ -610,10 +610,10 @@ font-family: times new roman;
     background-color: rgba(0,0,0,0.1);
 	float: left;
 }
-#purple{
+#green{
     width: 10%;
     height: 30px;
-    background-color: purple;
+    background-color: green;
     text-align: center; /* To center it horizontally (if you want) */
     line-height: 30px; /* To center it vertically */
     color: white; 
@@ -655,7 +655,7 @@ font-family: times new roman;
 	
 }
 .signout:hover{
-	background-color: #10C277;
+	background-color: #c64d3f;
 }
 
 
@@ -746,7 +746,7 @@ font-family: times new roman;
 
 
 .PPratings {
-  background-color:rgba(76, 175, 80, 0.9);
+  background-color:rgba(165, 36, 21, 1);
   color: white;
   font-size: 16px;
   padding: 16px 32px;
@@ -789,7 +789,7 @@ font-family: times new roman;
 
 }
 .submitEdit:hover{
-    background-color: #10C277;
+    background-color: #c64d3f;
 }
 .UploadIMG{
 	float:left;
@@ -833,7 +833,7 @@ font-family: times new roman;
 	margin-left: 5%;
 }
 .submitComment:hover{
-    background-color: #10C277;
+    background-color: #c64d3f;
 }
 
 .commentInput{
@@ -869,17 +869,22 @@ font-family: times new roman;
 	object-fit: contain;
 }
 #hugo{
-	float:left;
-	width:20%;
+	float: left;
+	width:25%;
 }
 #kaixin{
-	margin:0 auto;
-	width:20%;
+	float: right;
+	width:25%;
 }
 #miao{
-	float:right;
-	width:20%;
+	float:left;
+	width:25%;
 }
+#markus{
+	float:right;
+	width:25%;
+}
+
 #authors{
     width:100%;
     text-align:center;
@@ -890,7 +895,8 @@ font-family: times new roman;
 }
 #aboutUs{
 	text-align: center;
-		font-family: "Segoe UI",Arial,sans-serif;
+		font-family: Mom;
+    	src: url("/static/fonts/Mom.ttf");
 	font-size: 1.5em;
 	padding-left: 10%;
 	padding-right: 10%;
@@ -916,32 +922,4 @@ font-family: times new roman;
     font-family: Mom;
     src: url("/static/fonts/Mom.ttf");
 
-}
-
-a.button_link {
-	display: inline-block;
-	width: 280px;
-	height: 40px;
-	line-height: 40px;
-	background: green;
-	color: #FFFFFF;
-	text-align: center;
-	}
-a.button_link:hover {
-		background: blue;
-	}
-
-a.link_style{
-	display:inline-block;
-	color:blue;
-	}
-a.link_style:hover{
-	font-size: 1.05em;
-	padding-right: 10%;
-}		
-
-.helptext{
-	display:inline-block;
-	font-size: 0.8em;
-	font-style: italic;
 }
