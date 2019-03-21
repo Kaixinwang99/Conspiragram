@@ -136,6 +136,16 @@ def mainpage(request):
     return render(request, "mainpage/mainpage.html", {"feed": feed,
                                                       "upload_form": upload_form,
                                                       "comment_form": comment_form})
+def add_comment(request):
+    if request.is_ajax():
+        new_comment = Comment(author=request.user,
+                              picture=Picture.objects.get(slug=request.GET.get("picture_slug", "")),
+                              comment=request.GET.get("comment", ""))
+        new_comment.save()
+
+        return HttpResponse("")
+    else:
+        raise Http404
 
 
 
