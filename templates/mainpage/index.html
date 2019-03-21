@@ -35,16 +35,17 @@
                 </p>
                 {% endfor %}
 
-			<div id="login">
+			<!-- <div id="login">
 				<a href="{% url 'auth_login'%}" class="button_link">Login</a>
-			</div>
+			</div> -->
+            <input type="submit" name="submit" class="submit" value="Login" />
         </form>
 
-       <br>
+       <!-- <br>
 		
 		<div id="sign">
 		<a href="{% url 'registration_register' %}" class="button_link">Sign Up</a>
-		</div>
+		</div> -->
 		<div class="horizontal_container">
 
             <div id="line_left" class="line"> </div>
@@ -52,13 +53,16 @@
             <h6>OR</h6>
 
             <div id="line_right" class="line">  </div>
+         </div>   
 		
-		<p>
+<!-- 		<p>
 		Forget password? <a href="{% url 'auth_password_reset' %}" class="link_style">reset password</a>
 	
-		</p>
+		</p> -->
 
-        <!-- The Modal -->
+        <button id ="sign" class="submit sign_up" > Sign Up! </button>
+
+        <!-- The Modal, "ventanta" -->
             <div id="signModal" class="modal_first">
 
                 <!-- Modal content-->
