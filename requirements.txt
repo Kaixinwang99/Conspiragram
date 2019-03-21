@@ -1,6 +1,6 @@
 appnope==0.1.0
 decorator==4.0.10
-Django==1.11.7
+Django==1.11.17
 entrypoints==0.2.2
 ipykernel==4.5.0
 ipython==5.1.0
