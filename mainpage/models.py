@@ -18,16 +18,14 @@ class UserProfile(models.Model):
 
 class Picture(models.Model):
     UserID = models.ForeignKey(User)
+    avatar = models.ImageField(upload_to = 'user_pictures',blank = True)
+    description = models.CharField(max_length=512)
     TruthVotes = models.IntegerField(default=0)
     FalseVotes = models.IntegerField(default=0)
     Date = models.DateField(auto_now_add=True)
     Location = models.CharField(max_length=128)
-<<<<<<< HEAD
-    PictureID = models.AutoField (primary_key = True)
-=======
-    PictureID = models.IntegerField (unique = True)
+    PictureID = models.AutoField(primary_key = True)
     title = models.CharField(max_length=128)
->>>>>>> c65e13cc1514617b940a4ad29c87061ecac8da98
     def __str__(self):
         return self.PictureID
 
@@ -35,6 +33,7 @@ class Comments(models.Model):
     Picture = models.ForeignKey(Picture)
     User = models.ForeignKey(User)
     Text = models.CharField(max_length=128)
+    CommentID = models.AutoField(primary_key = True)
     def __str__(self):
         return self.Text
     

@@ -135,18 +135,18 @@ ACCOUNT_ACTIVATION_DAYS = 70
 # If True, the user will be automatically logged in.
 REGISTRATION_AUTO_LOGIN = True
 # The page you want users to arrive at after they successfully log in
-LOGIN_REDIRECT_URL = '/mainpage/'
+LOGIN_REDIRECT_URL = '/mainpage/mainpage'
 # The page users are directed to if they are not logged in,
 # and are trying to access pages requiring authentication
-LOGIN_URL = '/mainpage/'
+LOGIN_URL = '/mainpage/index'
 
 #for reset password
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' 
 EMAIL_USE_SSL = True
-EMAIL_HOST ='smtp.gmail.com'  # 如果是 163 改成 smtp.163.com
-EMAIL_PORT = 466
-EMAIL_HOST_USER = '1006431552kaixin@gmail.com' # email
-EMAIL_HOST_PASSWORD = 'WANGKAIxin2014' # password
+EMAIL_HOST ='smtp.gmail.com' 
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'pangmiao0206@gmail.com'#'1006431552kaixin@gmail.com' # email
+EMAIL_HOST_PASSWORD = 'pmm000206'#'WANGKAIxin2014' # password
 SERVER_EMAIL = EMAIL_HOST_USER
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
