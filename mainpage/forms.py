@@ -4,10 +4,10 @@ from django.contrib.auth.models import User
 from mainpage.models import *
 
 class CommentsForm(forms.ModelForm):
-    Text = forms.CharField(max_length=128, help_text = "Please enter the comments")
+    comment = forms.CharField(max_length=250, widget=forms.TextInput(attrs={'class': "commentInput"}))
     class Meta:
-        model = Comments
-        fields = ('Text')
+        model = Comment
+        fields = ('comment',"picture")
 
 class SignUpForm(UserCreationForm):
     first_name = forms.CharField(max_length=30, required=False, help_text="", widget=forms.TextInput(attrs={'class': "indexForm"}))
