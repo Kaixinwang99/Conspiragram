@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from mainpage.models import *
 
-class CommentsForm(forms.ModelForm):
+class CommentSubmissionForm(forms.ModelForm):
     comment = forms.CharField(max_length=250, widget=forms.TextInput(attrs={'class': "commentInput"}))
     class Meta:
         model = Comment
@@ -42,11 +42,8 @@ class ProfileEditForm(forms.ModelForm):
 class ImageUploadForm(forms.ModelForm):
     picture = forms.ImageField(label="", widget=forms.FileInput(attrs={'class': "uploadPic"}))
     description = forms.CharField(label="", widget=forms.Textarea(attrs={'class': "uploadDescription"}))
-    TruthVotes = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
-    FalseVotes = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
-    Location = forms.CharField(max_length=128,help_text="Please enter the location you took the photo")
 
     class Meta:
         model = Picture
-        fields = ("picture", "description", "TruthVotes", "FalseVotes", "Location")
+        fields = ("picture", "description")
 
