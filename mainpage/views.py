@@ -36,14 +36,14 @@ def visitor_cookie_handler(request):
     
 def index(request):
 
-    # context_dict={}
+    context_dict={}
     request.session.set_test_cookie()
     visitor_cookie_handler(request)
     context_dict['visits'] = request.session['visits']
     # request = render(request, 'mainpage/index.html', context_dict)
 
     if request.user.is_authenticated():
-        return redirect("foodfeed")
+        return redirect("mainpage")
 
     if request.method == "POST":
         sign_up_form = SignUpForm(request.POST)
@@ -63,13 +63,13 @@ def index(request):
         if user:
             if user.is_active:
                 login(request, user)
-                return redirect("foodfeed")
+                return redirect("mainpage")
 
     else:
         sign_up_form = SignUpForm()
         login_form = LogInForm()
 
-    return render(request, "foodfeed/index.html", {"sign_up_form": sign_up_form,
+    return render(request, "mainpage/index.html", {"sign_up_form": sign_up_form,
                                                    "login_form": login_form})
 
 	

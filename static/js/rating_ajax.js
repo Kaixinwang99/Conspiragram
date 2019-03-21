@@ -4,7 +4,7 @@ $(document).ready(function(){
          var type = $(this).attr("data-type");
          var value = $(this).attr("data-value");
          var index = $(this).attr("data-index");
-         $.get("/foodfeed/make_rating/", {picture_slug: picSlug, type: type, value: value}, function(data){
+         $.get("/mainpage/make_rating/", {picture_slug: picSlug, type: type, value: value}, function(data){
          });
          $(this).parent().attr("data-rating", value);
          GetUserRatings(index);
@@ -23,7 +23,7 @@ $(document).ready(function(){
          var comment = formValuesDict["comment"];
 
          var index = $(this).attr("data-index");
-         $.get("/foodfeed/add_comment/", {picture_slug: picSlug, comment: comment}, function (data) {
+         $.get("/mainpage/add_comment/", {picture_slug: picSlug, comment: comment}, function (data) {
              $("#comments." + index).append("<p class='comment'>" + comment + "</p>");
          });
          $(this)[0].reset();
