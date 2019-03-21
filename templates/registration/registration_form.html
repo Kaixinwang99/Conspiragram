@@ -1,0 +1,50 @@
+{% extends "mainpage/base.html" %}
+{%load staticfiles%}
+{% block resources %}
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" > </link>
+<script src="{% static 'js/signup.js' %}"></script>
+{% endblock %}
+
+{%block body_block%}
+<h2 class="form-signin-heading">Sign Up Here</h2>
+<form role="form" method="post" action=".">
+	{% csrf_token %}
+	<div class="form-group" >
+	<p class="required"><label class="required" for="id_username">
+		Username:</label>
+		<input class="form-control" id="id_username" maxlength="30"
+			name="username" type="text" />
+		<br>
+		<span class="helptext">
+		&#160 &#160 Required. 30 characters or fewer. Letters, digits and @/./+/-/_ only.
+		</span>
+	</p>
+	<br>
+	<p class="required"><label class="required" for="id_email">
+		E-mail:</label>
+		<input class="form-control" id="id_email" name="email"
+			type="email" />
+	</p>
+	<br>
+	<p class="required"><label class="required" for="id_password1">
+		Password:</label>
+		<input class="form-control" id="id_password1" name="password1"
+			type="password" />
+	</p>
+	<br>
+	<p class="required">
+		<label class="required" for="id_password2">
+			Password confirmation:</label>
+		<input class="form-control" id="id_password2" name="password2"
+			type="password" />
+		<br>
+		<span class="helptext">
+			&#160 &#160 Enter the same password as before, for verification.
+		</span>
+	</p>
+	</div>
+	<br>
+	<button type="submit" class="btn btn-default">Submit</button>
+</form>
+{%endblock%}

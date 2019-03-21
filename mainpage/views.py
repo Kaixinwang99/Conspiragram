@@ -36,10 +36,10 @@ def visitor_cookie_handler(request):
     
 def index(request):
 
-    context_dict={}
-    request.session.set_test_cookie()
-    visitor_cookie_handler(request)
-    context_dict['visits'] = request.session['visits']
+    # context_dict={}
+    # request.session.set_test_cookie()
+    # visitor_cookie_handler(request)
+    # context_dict['visits'] = request.session['visits']
     # request = render(request, 'mainpage/index.html', context_dict)
 
     if request.user.is_authenticated():
