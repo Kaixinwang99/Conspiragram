@@ -104,6 +104,6 @@ class Rating(models.Model):
     picture = models.ForeignKey(Picture)
     truth_rating = models.PositiveIntegerField(default=0)
     fake_rating = models.PositiveIntegerField(default=0)
-    verified_rating = models.BooleanField(default = False)
+    verified_rating = models.PositiveIntegerField(default=0)
     
 

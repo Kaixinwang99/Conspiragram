@@ -45,6 +45,29 @@ def get_current_user_pic_ratings(user, picture):
             "verified": rating.verified_rating}
 
 @register.assignment_tag
+def get_user_stats(user):
+    pictures = Picture.objects.filter(author=user)
+
+    truth_sum = 0
+    fake_sum = 0
+    verified_sum = 0
+
+    if len(pictures) == 0:
+        return {"truth": 0,
+                "fake": 0,
+                "verified": 0}
+
+    for picture in pictures:
+        pic_stats = get_pic_ratings(picture)
+        truth_sum += pic_stats["truth"]
+        fake_sum += pic_stats["fake"]
+        verified_sum += pic_stats["verified"]
+
+    return {"truth": truth_sum//len(pictures),
+            "fake": fake_sum//len(pictures),
+            "verified": verified_sum//len(pictures)}
+
+@register.assignment_tag
 def get_user_uploads(user):
     return Picture.objects.filter(author=user).order_by("-date_published")
 
@@ -86,27 +109,4 @@ def get_position(picture, feed):
         counter += 1
 
     return -1
-
-@register.assignment_tag
-def get_user_stats(user):
-    pictures = Picture.objects.filter(author=user)
-
-    truth_sum = 0
-    fake_sum = 0
-    verified_sum = 0
-
-    if len(pictures) == 0:
-        return {"truth": 0,
-                "fake": 0,
-                "verified": 0}
-
-    for picture in pictures:
-        pic_stats = get_pic_ratings(picture)
-        truth_sum += pic_stats["truth"]
-        fake_sum += pic_stats["fake"]
-        verified_sum += pic_stats["verified"]
-
-    return {"truth": truth_sum//len(pictures),
-            "fake": fake_sum//len(pictures),
-            "verified": verified_sum//len(pictures)}
 

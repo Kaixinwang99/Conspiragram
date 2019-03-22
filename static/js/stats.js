@@ -35,6 +35,5 @@ window.onload = function(){
 }
 
 function SetStat(percentage, stat_type) {
-
     stat_type.style.width = (percentage*100) + "%" ;
 }

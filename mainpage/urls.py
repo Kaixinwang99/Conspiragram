@@ -2,14 +2,16 @@ from django.conf.urls import url
 from mainpage import views
 
 urlpatterns = [
-    url(r'^$', views.index, name='index'),
-    url(r'^about/$', views.about, name='about'),
-    url(r'^mainpage/$', views.mainpage, name='mainpage'),
+    # url(r'^$', views.index, name='index'),
+    # url(r'^about/$', views.about, name='about'),
+    # url(r'^mainpage/$', views.mainpage, name='mainpage'),
     url(r'^profile_edit/$', views.profile_edit, name='profile_edit'),
     
     
     
+    url(r"^$", views.mainpage, name="mainpage"),
     url(r"add_comment/$", views.add_comment, name="comment"),
+    url(r"make_rating/$", views.make_rating, name="rate"),
     url(r"^user/$", views.profile_edit, name="profile_edit"),
     url(r"^user/(?P<user_name_slug>[\w\-]+)/$", views.user_profile, name="user_profile"),
 

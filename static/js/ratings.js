@@ -15,7 +15,7 @@ function GetRatings(index) {
     var verified_star_full = "fa fa-star checked_blue";
 
     SetPictureRatingsStarClass(truthSpans, truth_star_full, empty_star, truth);
-    SetPictureRatingsStarClass(fakeSpans, fake_star_full, empty_star, style);
+    SetPictureRatingsStarClass(fakeSpans, fake_star_full, empty_star, fake);
     SetPictureRatingsStarClass(verifiedSpans, verified_star_full, empty_star, verified);
 
 }
