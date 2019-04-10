@@ -12,3 +12,6 @@ Additionally, the database must be set up with the specific command:
 python manage.py migrate --run-syncdb
 
 NOT just python manage.py migrate, that will cause errors in the population script.
+
+
+## Update de hugo para papa
